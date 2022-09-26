@@ -43,4 +43,25 @@ router.post('/notes', async (req, res) => {
     }
 });
 
+router.delete('/notes/:id', async (req, res) => {
+    console.log('Delete api/notes request recieved');
+    const removeId = req.params.id;
+    const dbContents = await fs.readFile(db, 'utf-8');
+    let notes = JSON.parse(dbContents);
+    if (notes || notes == []){
+        let removeIndex = notes.findIndex(item => item.id == removeId);
+        if (removeIndex >= 0){
+            notes.splice(removeIndex, 1);
+            await fs.writeFile(db, JSON.stringify(notes));
+            res.status(200).send('Note removed from database.');
+        }
+        else {
+            res.status(404).send('Note not found!');
+        }
+    }
+    else{
+        res.status(500).send('Unable to read database!');
+    }
+});
+
 module.exports = router;
