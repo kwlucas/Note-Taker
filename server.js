@@ -9,10 +9,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-//if request has "/" send to rootRoutes
-app.use('/', rootRoutes);
+
 //if request has "/api" sent to apiRoutes
 app.use('/api', apiRoutes);
+//if request has "/" send to rootRoutes
+app.use('/', rootRoutes);
 
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
