@@ -1,9 +1,11 @@
 const router = require('express').Router();
+const path = require('path');
 const fs = require('fs').promises;
 
+const db = path.join(__dirname, '../db/db.json')
 router.get('/notes', async (req, res) => {
     console.log('GET api/notes request recieved');
-    const dbContents = await fs.readFile('../db/db.json', 'utf-8');
+    const dbContents = await fs.readFile(db, 'utf-8');
     let notes = JSON.parse(dbContents);
     if (notes){
         res.status(200).json(notes);
@@ -19,7 +21,7 @@ router.post('/notes', async (req, res) => {
     if(!title || !text){
         res.status(400).send('Invalid entry');
     }
-    const dbContents = await fs.readFile('../db/db.json', 'utf-8');
+    const dbContents = await fs.readFile(db, 'utf-8');
     let notes = JSON.parse(dbContents);
     if (notes || notes == []){
         let ids = notes.map(item => item.id);
@@ -33,7 +35,7 @@ router.post('/notes', async (req, res) => {
             id: newId
         }
         notes.push(newNote);
-        await fs.writeFile('../db/db.json', JSON.stringify(notes));
+        await fs.writeFile(db, JSON.stringify(notes));
         res.status(200).send('Note saved to the database.');
     }
     else{
