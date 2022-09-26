@@ -25,7 +25,7 @@ router.post('/notes', async (req, res) => {
     let notes = JSON.parse(dbContents);
     if (notes || notes == []){
         let ids = notes.map(item => item.id);
-        let newId = 0;
+        let newId = 1;
         while (ids.includes(newId)){
             newId++;
         }
@@ -50,7 +50,7 @@ router.delete('/notes/:id', async (req, res) => {
     let notes = JSON.parse(dbContents);
     if (notes || notes == []){
         let removeIndex = notes.findIndex(item => item.id == removeId);
-        if (removeIndex >= 0){
+        if (removeIndex >= 1){
             notes.splice(removeIndex, 1);
             await fs.writeFile(db, JSON.stringify(notes));
             res.status(200).send('Note removed from database.');

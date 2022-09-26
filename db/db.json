@@ -1,7 +1,1 @@
-[
-    {
-        "title":"Welcome!",
-        "text":"Welcome to the \"Note Taker\" application!\nTo create a new note click the plus in the upper right.\nTo delete a note click the trashcan icon next to the name of the note you wish to delete.",
-        "id":0
-    }
-]
+[{"title":"Welcome!","text":"Welcome to the Note Taker application!\nTo create a new note click the plus in the upper right.\nTo delete a note click the trashcan icon next to the name of the note you wish to delete.","id":1}]
