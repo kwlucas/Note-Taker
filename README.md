@@ -1,5 +1,5 @@
 # Note Taker
-[Deployed Application]()
+[Deployed Application](https://thawing-meadow-35495.herokuapp.com/)
 
 ## Purpose
 
@@ -21,4 +21,4 @@ This web application allows users to create and save notes for later reference.
 
 Here is a preview of the note taker application.
 
-![application preview](./assets/images/preview.PNG)
+![application preview](./assets/images/preview.gif)
