@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 
 const db = path.join(__dirname, '../db/db.json')
 router.get('/notes', async (req, res) => {
-    console.log('GET api/notes request recieved');
+    //console.log('GET api/notes request recieved');
     const dbContents = await fs.readFile(db, 'utf-8');
     let notes = JSON.parse(dbContents);
     if (notes){
@@ -16,7 +16,7 @@ router.get('/notes', async (req, res) => {
 });
 
 router.post('/notes', async (req, res) => {
-    console.log('POST api/notes request recieved');
+    //console.log('POST api/notes request recieved');
     const { title, text } = req.body;
     if(!title || !text){
         res.status(400).send('Invalid entry');
@@ -44,7 +44,7 @@ router.post('/notes', async (req, res) => {
 });
 
 router.delete('/notes/:id', async (req, res) => {
-    console.log('Delete api/notes request recieved');
+    //console.log('Delete api/notes request recieved');
     const removeId = req.params.id;
     const dbContents = await fs.readFile(db, 'utf-8');
     let notes = JSON.parse(dbContents);
