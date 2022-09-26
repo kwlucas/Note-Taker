@@ -2,10 +2,11 @@ const router = require('express').Router();
 const fs = require('fs').promises;
 
 router.get('/notes', async (req, res) => {
+    console.log('GET api/notes request recieved');
     const dbContents = await fs.readFile('../db/db.json', 'utf-8');
     let notes = JSON.parse(dbContents);
     if (notes){
-        res.status(200).send(notes);
+        res.status(200).json(notes);
     }
     else{
         res.status(404).send('Notes not found');
@@ -13,6 +14,7 @@ router.get('/notes', async (req, res) => {
 });
 
 router.post('/notes', async (req, res) => {
+    console.log('POST api/notes request recieved');
     const { title, text } = req.body;
     if(!title || !text){
         res.status(400).send('Invalid entry');
