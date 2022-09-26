@@ -12,4 +12,21 @@ router.get('/api/notes', async (req, res) => {
     }
 });
 
+router.post('/api/notes', async (req, res) => {
+    const newNote = req.body;
+    if(!newNote.title || !newNote.text){
+        res.status(400).send('Invalid entry');
+    }
+    const dbContents = await fs.readFile('../db/db.json', 'utf-8');
+    let notes = JSON.parse(dbContents);
+    if (notes){
+        notes.push(newNote);
+        await fs.writeFile('../db/db.json', JSON.stringify(notes));
+        res.status(200).send('Note saved to the database.');
+    }
+    else{
+        res.status(500).send('Unable to read database!');
+    }
+});
+
 module.exports = router;
